@@ -24,7 +24,13 @@ git clone https://github.com/your-username/livix.git
 ```
 ---
 
-# 📄 Usage Example
+## 🔄 Livix Lifecycle
+
+![Livix Lifecycle](./Livix_Lifecycle.png)
+
+---
+
+## 📄 Usage Example
 
 ```js
 // my-component.js
