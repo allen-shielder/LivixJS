@@ -40,7 +40,6 @@ export const LifecycleMixin = Base => class extends Base {
      * Executes the user's custom `willupdate()` and triggers re-render.
      */
     attributeChangedCallback(name, oldValue, newValue) {
-      console.log(`[Mixin] Attribute changed: ${name} = ${newValue}`);
       if (typeof super.attributeChangedCallback === 'function') {
         super.attributeChangedCallback(name, oldValue, newValue);
       }
@@ -62,6 +61,14 @@ export const LifecycleMixin = Base => class extends Base {
           this.didrender?.();
         }
       }
+    }
+
+    async applyStyles(url) {
+      const response = await fetch(url);
+      const cssText = await response.text();
+      const styleSheet = new CSSStyleSheet();
+      styleSheet.replaceSync(cssText);
+      this.shadowRoot.adoptedStyleSheets = [styleSheet];
     }
   };
   
