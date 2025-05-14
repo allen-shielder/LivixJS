@@ -82,7 +82,7 @@ export const LifecycleMixin = (Base) =>
      *   this.property({
      *     count: 0,
      *     title: 'Hello',
-     *     user: { name: 'Yini' }
+     *     user: { name: 'xxx' }
      *   });
      *
      *   this.count = 1; // will automatically call this._renderInternal()
