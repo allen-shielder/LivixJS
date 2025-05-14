@@ -1,4 +1,27 @@
-// livix-core.js
+// livix-core
+
+export const livixEvent = {
+    /**
+     * Registers a global custom event listener.
+     */
+    on(event, callback) {
+        document.addEventListener(event, callback);
+    },
+
+    /**
+     * Removes a global custom event listener.
+     */
+    off(event, callback) {
+        document.removeEventListener(event, callback);
+    },
+
+    /**
+     * Dispatches (fires) a global custom event with optional data.
+     */
+    emit(event, data) {
+        document.dispatchEvent(new CustomEvent(event, { detail: data }));
+    }
+};
 
 /**
  * LifecycleMixin - A mixin that adds lifecycle and rendering support
