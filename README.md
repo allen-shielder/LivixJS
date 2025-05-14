@@ -102,7 +102,7 @@ customElements.define('my-component', MyComponent);
 | Best use        | Business logic, internal component state (`this.count = 0`)                  | Configuration (`<my-button type="primary">`)                          |
 | Example         | `this.myData = { name: 'Yini' }`                                             | `<my-comp title="Hello"></my-comp>`                                   |
 
-✅ Summary
+### ✅ Summary
 Attributes are text-based values defined in markup.
 
 Properties are live JavaScript values maintained by the component at runtime.
