@@ -89,3 +89,22 @@ customElements.define('my-component', MyComponent);
   </body>
 </html>
 ```
+
+---
+## 🎯 Difference between property() and attributes in Livix
+| Feature         | `property()`                                                                 | Attribute                                                             |
+| --------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Definition      | Defined dynamically at runtime via `this.property()` or `this.setProperty()` | Declared in HTML markup (`<my-element attr="value">`)                 |
+| Data type       | Any JavaScript type (object, array, number, boolean, etc.)                   | Always a **string**                                                   |
+| Lifecycle       | Mutable during component lifetime                                            | Typically set at initialization; can be changed with `setAttribute()` |
+| Purpose         | Internal state management for reactive data                                  | External configuration passed from HTML                               |
+| Livix rendering | Changes automatically trigger `_renderInternal()`                            | Changes only trigger rendering if listed in `observedAttributes[]`    |
+| Best use        | Business logic, internal component state (`this.count = 0`)                  | Configuration (`<my-button type="primary">`)                          |
+| Example         | `this.myData = { name: 'Yini' }`                                             | `<my-comp title="Hello"></my-comp>`                                   |
+
+✅ Summary
+Attributes are text-based values defined in markup.
+
+Properties are live JavaScript values maintained by the component at runtime.
+
+In Livix, property() provides a lightweight reactive state system that directly integrates with component rendering.
