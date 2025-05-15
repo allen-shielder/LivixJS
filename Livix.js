@@ -1,26 +1,26 @@
 // livix-core
 
 export const livixEvent = {
-    /**
-     * Registers a global custom event listener.
-     */
-    on(event, callback) {
-        document.addEventListener(event, callback);
-    },
+  /**
+   * Registers a global custom event listener.
+   */
+  on(event, callback) {
+    document.addEventListener(event, callback);
+  },
 
-    /**
-     * Removes a global custom event listener.
-     */
-    off(event, callback) {
-        document.removeEventListener(event, callback);
-    },
+  /**
+   * Removes a global custom event listener.
+   */
+  off(event, callback) {
+    document.removeEventListener(event, callback);
+  },
 
-    /**
-     * Dispatches (fires) a global custom event with optional data.
-     */
-    emit(event, data) {
-        document.dispatchEvent(new CustomEvent(event, { detail: data }));
-    }
+  /**
+   * Dispatches (fires) a global custom event with optional data.
+   */
+  emit(event, data) {
+    document.dispatchEvent(new CustomEvent(event, { detail: data }));
+  },
 };
 
 /**
@@ -89,8 +89,11 @@ export const LifecycleMixin = (Base) =>
       Object.defineProperty(this, name, {
         get: () => value,
         set: (newValue) => {
-          value = newValue;
-          this._renderInternal?.();
+          if (value !== newValue) {
+            this.willupdate?.(name, value, newValue);
+            value = newValue;
+            this._renderInternal?.();
+          }
         },
       });
     }
@@ -117,8 +120,11 @@ export const LifecycleMixin = (Base) =>
         Object.defineProperty(this, name, {
           get: () => value,
           set: (newValue) => {
-            value = newValue;
-            this._renderInternal?.();
+            if (value !== newValue) {
+              this.willupdate?.(name, value, newValue);
+              value = newValue;
+              this._renderInternal?.();
+            }
           },
         });
       }
