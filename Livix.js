@@ -1,5 +1,22 @@
 // livix-core
 
+export function createStore(initialState = {}) {
+  let state = initialState;
+  const listeners = new Set();
+
+  return {
+    getState: () => state,
+    setState: (newState) => {
+      state = { ...state, ...newState };
+      listeners.forEach((callback) => callback(state));
+    },
+    subscribe: (callback) => {
+      listeners.add(callback);
+      return () => listeners.delete(callback); // return unsubscribe
+    },
+  };
+}
+
 export const livixEvent = {
   /**
    * Registers a global custom event listener.
